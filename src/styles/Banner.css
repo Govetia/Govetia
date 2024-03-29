@@ -1,0 +1,22 @@
+.gvt-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: solid 3px black;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(72, 159, 149, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), url('../assets/pexels-ivan-samkov-4240587.jpg');
+    
+    background-size: cover; 
+    background-position: center; 
+    height: 42.2em;
+}
+
+.gvt-title {
+    color: black;
+    text-align: center;
+    font-size: 65px;
+    font-weight: bold;
+}
