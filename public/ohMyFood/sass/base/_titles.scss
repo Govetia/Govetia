@@ -1,0 +1,53 @@
+/* Paramètres généraux du site web Ohmyfood */
+
+
+h1 {
+    font-size: 21px;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+
+    @include responsive-tablet {
+        @include flex-center;
+    }
+
+    @include responsive-desktop {
+        justify-content: flex-start;
+        padding-left: 45px;
+    }
+}
+
+h2 {
+    font-size: 19px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+    font-size: 24px;
+    font-family: 'Shrikhand', sans-serif;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 17px;
+    position: relative;
+    
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 0;
+        height: 3px;
+        width: 45px;
+        background-color: $color-tertiary;
+    }
+}
+
+h5 {
+    font-size: 17px;
+    margin: 0;
+    margin-left: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

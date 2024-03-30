@@ -1,0 +1,49 @@
+ /* Mise en place loading spinner */
+
+.spinner {
+  position: absolute;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+  border: 16px solid #0042A4;
+  border-radius: 50%;
+  border-top: 16px solid $color-primary;
+  border-right: 16px solid $color-secondary;
+  border-bottom: 16px solid #96BFF9;
+  border-left: 16px solid $color-tertiary;
+  width: 200px;
+  height: 200px;
+  animation: spin $prog-spin-dur linear $prog-spin-delay;
+  transform: rotate(0);
+  opacity: 0;
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
+    opacity: 1;
+  }
+ 
+  100% { 
+    transform: rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+main {
+  animation: main $body-delay;  
+}
+
+@keyframes main {
+  0% {
+    opacity: 0.2;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+

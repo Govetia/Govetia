@@ -25,7 +25,7 @@ const projectsDetails = [
   },
   {
     title: "Oh my food : Restaurant",
-    url: "localhost:3000/oh_my_food",
+    url: "/ohMyFood",
     picture: "/assets/oh_my_food.png",
     alt: 'Page accueil site web Oh my food'
   }

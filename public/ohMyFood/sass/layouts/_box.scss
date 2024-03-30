@@ -1,0 +1,9 @@
+/* Paramètres des box */
+
+.box {
+    display: grid;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px $color-shadow;
+}

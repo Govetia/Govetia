@@ -1,0 +1,1100 @@
+@charset "UTF-8";
+/* Variables pour l'animation de transition des cartes sur les pages menus */
+/* Variables pour l'animation du loading spinner */
+/* Variables couleurs */
+/* Variable box shadow */
+/* Map responsive design */
+/* Mixin effet des boutons principaux */
+/* Mixin flex-center */
+/* Mixin responsive */
+/* Sélection des polices de caractères */
+/* titles : Shrikhand */
+@font-face {
+  font-family: 'Shrikhand';
+  src: url(https://fonts.gstatic.com/s/shrikhand/v9/a8IbNovtLWfR7T7bMJwrA4KR.woff2) format("woff2");
+}
+
+/* txt : Roboto */
+@font-face {
+  font-family: 'Roboto';
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format("woff2");
+}
+
+/* Paramètres généraux du site web Ohmyfood */
+h1 {
+  font-size: 21px;
+  font-weight: bolder;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  h1 {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-left: 45px;
+  }
+}
+
+h2 {
+  font-size: 19px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: 'Shrikhand', sans-serif;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 17px;
+  position: relative;
+}
+
+h4::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 0;
+  height: 3px;
+  width: 45px;
+  background-color: #99E2D0;
+}
+
+h5 {
+  font-size: 17px;
+  margin: 0;
+  margin-left: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Design bouton dégradé */
+button {
+  color: white;
+  border-radius: 30px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FF79DA), to(#9356DC));
+  background: linear-gradient(#FF79DA, #9356DC);
+  border: transparent;
+  padding: 15px 20px;
+  font-size: 16px;
+  -webkit-box-shadow: 5px 5px 10px #e7e5e5;
+          box-shadow: 5px 5px 10px #e7e5e5;
+  cursor: pointer;
+}
+
+button:hover {
+  -webkit-box-shadow: 5px 5px 10px #9e9595;
+          box-shadow: 5px 5px 10px #9e9595;
+  opacity: 0.8;
+}
+
+.button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.button__title {
+  width: 48%;
+}
+
+@media screen and (min-width: 768px) {
+  .button__title {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  .button__title {
+    margin-top: 20px;
+    width: 20%;
+  }
+}
+
+/* Mise en place de l'animation du bouton "j'aime" en forme de coeur */
+.heart {
+  width: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 35px;
+}
+
+.heart .far {
+  position: absolute;
+  font-weight: 100;
+}
+
+.heart .fas {
+  position: absolute;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  opacity: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9356DC), to(#FF79DA));
+  background-image: linear-gradient(#9356DC, #FF79DA);
+}
+
+@media screen and (min-width: 0) {
+  .heart .fas:active {
+    opacity: 1;
+    -webkit-transition: opacity 600ms;
+    transition: opacity 600ms;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  .heart .fas:hover {
+    opacity: 1;
+    -webkit-transition: opacity 600ms;
+    transition: opacity 600ms;
+  }
+}
+
+/* Mise en place loading spinner */
+.spinner {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 16px solid #0042A4;
+  border-radius: 50%;
+  border-top: 16px solid #9356DC;
+  border-right: 16px solid #FF79DA;
+  border-bottom: 16px solid #96BFF9;
+  border-left: 16px solid #99E2D0;
+  width: 200px;
+  height: 200px;
+  -webkit-animation: spin 2000ms linear 0ms;
+          animation: spin 2000ms linear 0ms;
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+  opacity: 0;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+main {
+  -webkit-animation: main 7000ms;
+          animation: main 7000ms;
+}
+
+@-webkit-keyframes main {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes main {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Paramètres généraux du site web Ohmyfood */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+}
+
+/* Paramètres des box */
+.box {
+  display: -ms-grid;
+  display: grid;
+  height: auto;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 10px #e7e5e5;
+          box-shadow: 5px 5px 10px #e7e5e5;
+}
+
+/* Mise en page du header de la page d'accueil */
+.header_responsive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .header_responsive {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+.header__logo {
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__logo img {
+  width: 45%;
+  height: 100%;
+}
+
+/* Mise en page du header de la page des pages menu */
+.header_menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 12px;
+  width: 88%;
+  margin-left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .header_menu {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  .header_menu {
+    width: 75%;
+  }
+}
+
+.header__arrow {
+  font-size: 22px;
+}
+
+.header__arrow a {
+  color: black;
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 30px 20px;
+  background-color: #3a3a3a;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.footer p {
+  font-size: 18px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  margin-top: 8px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer__logo {
+  width: 35%;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  margin-bottom: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__logo {
+    max-width: 20%;
+    margin-bottom: 35px;
+  }
+}
+
+.footer__logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 768px) {
+  .footer__info p {
+    font-size: 14px;
+  }
+}
+
+.footer__info--layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.footer__info--layout span {
+  width: 5%;
+}
+
+.footer__info--layout p {
+  margin-left: 15px;
+}
+
+/* Mise en page de la barre de localisation */
+.localisation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #e7e5e5;
+  width: 100%;
+  -webkit-box-shadow: inset 0em 0.1em 2px #b8b8b8;
+          box-shadow: inset 0em 0.1em 2px #b8b8b8;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .localisation {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-radius: 35px;
+    width: 30%;
+  }
+}
+
+.localisation__icone {
+  padding-left: 30px;
+}
+
+.localisation__recherche {
+  text-decoration: none;
+  background-color: #e7e5e5;
+  border: #e7e5e5;
+  padding-left: 15px;
+}
+
+::-webkit-input-placeholder {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+:-ms-input-placeholder {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+::-ms-input-placeholder {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+::placeholder {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+/* Mise en page de la courte présentation de l'entreprise */
+.presentation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  background-color: #f7f6f6;
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .presentation {
+    -webkit-box-shadow: inset 0em 0.1em 2px #b8b8b8;
+            box-shadow: inset 0em 0.1em 2px #b8b8b8;
+    background-color: #e7e5e5;
+  }
+}
+
+.presentation p {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+/* Mise en page de la partie Fonctionnement */
+.fonctionnement {
+  padding: 30px 20px;
+}
+
+.fonctionnement_orga {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 1046px) {
+  .fonctionnement_orga {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.fonctionnement__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  background-color: #f7f6f6;
+  padding: 5px 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .fonctionnement__box {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  .fonctionnement__box {
+    width: 25%;
+  }
+}
+
+.fonctionnement__box:hover {
+  background: #e7d2ff;
+}
+
+.fonctionnement__box:hover .fonctionnement__icone {
+  color: #9356DC;
+}
+
+.fonctionnement__number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: -15px;
+  width: 23px;
+  height: 23px;
+  min-width: 0px;
+  min-height: 0px;
+  border-radius: 50%;
+  color: white;
+  font-size: 15px;
+  background-color: #9356DC;
+}
+
+.fonctionnement__icone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  font-size: 20px;
+  color: grey;
+}
+
+.fonctionnement__text {
+  font-size: 15px;
+  font-weight: bolder;
+  color: black;
+}
+
+.fonctionnement a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-decoration: none;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+}
+
+/* Mise en page des 4 menus sous forme de cartes */
+.restaurants {
+  padding: 30px 20px;
+  background-color: #f7f6f6;
+}
+
+.restaurants_orga {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.restaurants_orga ul {
+  list-style-type: none;
+  width: 100%;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .restaurants_orga ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .restaurants_orga li {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1046px) {
+  .restaurants_orga li {
+    width: 34%;
+  }
+}
+
+.restaurants_orga a {
+  color: black;
+}
+
+.restaurants__card {
+  width: 100%;
+  height: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.restaurants__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.restaurants__image--layout {
+  height: 180px;
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.restaurants__nouveau {
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: .7rem;
+  background-color: #99E2D0;
+  color: green;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+.restaurants__texte {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.restaurants__texte h2 {
+  margin-top: 8px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.restaurants__texte p {
+  margin-top: 0;
+  color: black;
+}
+
+/* Mise en page des menus */
+.cover-image img {
+  height: 250px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 4;
+}
+
+@media screen and (min-width: 1046px) {
+  .cover-image img {
+    height: 350px;
+  }
+}
+
+.menu {
+  border-radius: 35px 35px 0px 0px;
+  margin-top: -32px;
+  display: inline-block;
+  background-color: #f7f6f6;
+  padding-bottom: 50px;
+  width: 100%;
+  z-index: -1;
+}
+
+.menu__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .menu__title {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.menu__body {
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .menu__transition {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  color: black;
+  overflow: hidden;
+  background-color: white;
+  -webkit-animation: transition 1800ms;
+          animation: transition 1800ms;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    margin: .5rem;
+    width: 31%;
+  }
+}
+
+.card--1 {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--2 {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--3 {
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--4 {
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--5 {
+  -webkit-animation-delay: 1000ms;
+          animation-delay: 1000ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--6 {
+  -webkit-animation-delay: 1200ms;
+          animation-delay: 1200ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--7 {
+  -webkit-animation-delay: 1400ms;
+          animation-delay: 1400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--8 {
+  -webkit-animation-delay: 1600ms;
+          animation-delay: 1600ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--9 {
+  -webkit-animation-delay: 1800ms;
+          animation-delay: 1800ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--10 {
+  -webkit-animation-delay: 2000ms;
+          animation-delay: 2000ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--11 {
+  -webkit-animation-delay: 2200ms;
+          animation-delay: 2200ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card--12 {
+  -webkit-animation-delay: 2400ms;
+          animation-delay: 2400ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.card__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .card__description {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.card__description p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 4px;
+}
+
+.card__price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-left: auto;
+  font-weight: 600;
+  padding: 13px;
+}
+
+.card__check {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: #99E2D0;
+  width: 0;
+  -webkit-transition: width 750ms;
+  transition: width 750ms;
+}
+
+.card__check span {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: white;
+  color: #99E2D0;
+  height: 26px;
+  width: 26px;
+  border-radius: 25px;
+}
+
+.card:focus .card__check {
+  width: 15%;
+}
+
+.card:focus .card__check span {
+  -webkit-animation: rotate 750ms;
+          animation: rotate 750ms;
+}
+
+.card:focus .card__description {
+  white-space: nowrap;
+  width: 60%;
+}
+
+.card:focus h5 {
+  white-space: nowrap;
+}
+
+/* Animation de la coche qui tourne */
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(-270deg);
+            transform: rotate(-270deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(-270deg);
+            transform: rotate(-270deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+
+/* Mise en place de l'animation de transition des cartes */
+@-webkit-keyframes transition {
+  0% {
+    -webkit-transform: translateY(-100px) translateX(150px);
+            transform: translateY(-100px) translateX(150px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes transition {
+  0% {
+    -webkit-transform: translateY(-100px) translateX(150px);
+            transform: translateY(-100px) translateX(150px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=main.css.map */

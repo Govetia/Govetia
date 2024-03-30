@@ -1,0 +1,159 @@
+/* Mise en page des menus */
+
+.cover-image img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    z-index: 4;
+
+    @include responsive-desktop {
+        height: 350px;
+    }
+
+}
+
+.menu {
+    border-radius: 35px 35px 0px 0px;
+    margin-top: -32px;
+    display: inline-block;
+    background-color: $color-background;
+    padding-bottom: 50px;
+    width: 100%;
+    z-index: -1;
+
+    &__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+
+    @include responsive-tablet {
+        justify-content: space-between;
+    }
+    }
+
+    &__body {
+        padding: 1rem;
+    }
+
+    &__transition {
+        @include responsive-tablet {
+            display: flex;
+            justify-content: space-between;
+        } 
+    }
+ 
+}
+
+.card {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    overflow: hidden;
+    background-color: white;
+
+    @include responsive-tablet {
+        margin: .5rem;
+        width: 31%;
+    }
+
+    animation: transition $prog-card-dur;
+    @for $i from 1 through 12 {
+        &--#{$i} {
+            animation-delay: $prog-card-delay * $i;
+            animation-fill-mode: both;
+        }
+    }       
+    
+    &__description {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        overflow: hidden;    
+        
+        @include responsive-tablet {
+            justify-content: center;
+        }
+
+        p {            
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 4px;
+        }
+    }
+    
+    &__price {
+        display: flex;
+        align-items: flex-end;
+        margin-left: auto;
+        font-weight: 600;  
+        padding: 13px;
+    }
+
+    &__check {
+        display: grid;
+        place-items: center;
+        background-color: $color-tertiary;
+        width: 0;
+        transition: width 750ms;
+
+        span {
+            display: grid;
+            place-items: center;
+            background-color: white;
+            color: $color-tertiary;
+            height: 26px;
+            width: 26px; 
+            border-radius: 25px;
+        }
+    }
+
+    &:focus {
+
+        .card__check {
+            width: 15%;
+            
+            span {
+                animation: rotate 750ms; // Animation de la coche qui tourne
+            }
+        }
+
+        .card__description {
+            white-space: nowrap;   
+            width: 60%;
+        }
+
+        h5 {
+            white-space: nowrap;   
+        }
+    } 
+}
+
+
+/* Animation de la coche qui tourne */
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-270deg);
+    }    
+    100% {
+        transform: rotate(0);
+    }
+}
+
+
+/* Mise en place de l'animation de transition des cartes */
+
+
+@keyframes transition {
+    0% {
+        transform: translateY(-100px) translateX(150px);
+        opacity: 0;
+    }    
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

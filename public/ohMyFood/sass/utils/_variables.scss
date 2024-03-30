@@ -1,0 +1,28 @@
+/* Variables pour l'animation de transition des cartes sur les pages menus */
+
+$prog-card-dur: 1800ms;
+$prog-card-delay: 200ms;
+
+/* Variables pour l'animation du loading spinner */
+
+$prog-spin-dur: 2000ms;
+$prog-spin-delay: 0ms;
+$body-delay: 7000ms;
+
+/* Variables couleurs */
+
+$color-primary: #9356DC;
+$color-secondary: #FF79DA;
+$color-tertiary: #99E2D0;
+$color-button: linear-gradient($color-secondary, $color-primary);
+$color-background: #f7f6f6;
+
+/* Variable box shadow */
+
+$color-shadow: rgb(231, 229, 229);
+$size-shadow: 5px 5px 10px;
+
+/* Map responsive design */
+
+$responsive: (mobile: 768px, tablet: 1046px);
+

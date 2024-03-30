@@ -1,0 +1,229 @@
+/* Mise en page de la barre de localisation */
+
+.localisation {
+    @include flex-center;
+    flex-direction: row;
+    background-color: $color-shadow;
+    width: 100%;
+    box-shadow: inset 0em .1em 2px rgb(184, 184, 184);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    @include responsive-tablet {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border-radius: 35px;
+        width: 30%;
+    }
+    
+    &__icone {
+        padding-left: 30px;
+    }
+
+    &__recherche {
+        text-decoration: none;
+        background-color: $color-shadow;
+        border: $color-shadow;
+        padding-left: 15px;
+    }
+}
+
+::placeholder {
+    font-weight: bold;
+    color: black;
+    font-size: 14px;
+}
+
+
+/* Mise en page de la courte présentation de l'entreprise */
+
+.presentation {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $color-background;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+
+    @include responsive-tablet {
+        box-shadow: inset 0em .1em 2px rgb(184, 184, 184);
+        background-color: $color-shadow;
+    }
+
+    & p {
+        font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+}
+
+
+/* Mise en page de la partie Fonctionnement */
+
+.fonctionnement {
+    padding: 30px 20px;
+
+    &_orga {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        @include responsive-desktop {
+            flex-direction: row;
+        }
+    }
+
+    &__box {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        background-color: $color-background;
+        padding: 5px 0px;
+
+        @include responsive-tablet {
+            width: 55%;
+        }
+
+        @include responsive-desktop {
+            width: 25%;
+        }
+
+        &:hover {
+            background: #e7d2ff;
+
+            .fonctionnement__icone {
+                color: $color-primary;
+            }
+        }
+    }
+
+    &__number {
+        @include flex-center;
+        margin-left: -15px;
+        width: 23px;
+        height: 23px;
+        min-width: 0px;
+        min-height: 0px;
+        border-radius: 50%;
+        color: white;
+        font-size: 15px;
+        background-color: $color-primary;
+    }
+
+    &__icone {
+        @include flex-center;
+        width: 20%;
+        font-size: 20px;
+        color: grey;                
+    }
+
+    &__text {
+        font-size: 15px;
+        font-weight: bolder;
+        color: black;
+    }
+
+
+    a {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    
+}
+
+
+/* Mise en page des 4 menus sous forme de cartes */
+
+.restaurants {
+    padding: 30px 20px;
+    background-color: $color-background;
+
+    &_orga {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center; 
+
+        ul {
+            list-style-type: none;
+            width: 100%;
+            padding-left: 0;
+
+            @include responsive-tablet {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+        }
+
+        li {
+            @include responsive-tablet {
+                width: 45%;
+            }
+
+            @include responsive-desktop {
+                width: 34%;
+            }
+        } 
+        
+        a {
+           color: black;
+        }
+    }
+
+    &__card {
+        width: 100%;
+        height: auto;
+        text-decoration: none;
+        cursor: pointer; 
+    }
+
+    &__image {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        &--layout {
+            height: 180px;
+            width: 100%;
+            border-radius: 15px 15px 0px 0px;
+            object-fit: cover;
+        }
+    }
+
+    &__nouveau {
+        position: absolute;
+        width: fit-content;
+        margin: .7rem;
+        background-color: $color-tertiary;
+        color: green;
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 3px;
+    }
+
+    &__texte {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px 10px;
+
+        h2 {
+            margin-top: 8px;
+            margin-bottom: 0px;
+            color: black;
+        }
+    
+        p {
+            margin-top: 0;
+            color: black;
+        }
+    }    
+}

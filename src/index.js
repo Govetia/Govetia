@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import Menu from './components/Menu';
-import Banner from './components/Banner';
-import Projects from './components/Projects';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
-import { BrowserRouter as Route } from 'react-router-dom';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <Banner />
-      <Projects />
-        <Route path="/Tfek" />
+      <App />
     </ChakraProvider>
   </React.StrictMode>
 );

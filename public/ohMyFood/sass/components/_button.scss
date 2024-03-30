@@ -1,0 +1,33 @@
+/* Design bouton dégradé */
+
+button {
+    color: white;
+    border-radius: 30px;
+    background: $color-button;
+    border: transparent;
+    padding: 15px 20px;
+    font-size: 16px;
+    box-shadow: $size-shadow $color-shadow;
+    cursor: pointer;
+
+    &:hover{
+        @include button-anim;
+    }
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    &__title {
+        width: 48%;
+
+        @include responsive-tablet {
+            width: 30%;
+        }
+
+        @include responsive-desktop {
+            margin-top: 20px;
+            width: 20%;
+        }
+    }
+}

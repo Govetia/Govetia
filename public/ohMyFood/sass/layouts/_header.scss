@@ -1,0 +1,50 @@
+/* Mise en page du header de la page d'accueil */
+
+.header_responsive {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  
+  @include responsive-tablet {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.header__logo {
+  padding: 12px;
+  @include flex-center;
+}
+
+.header__logo img {
+  width: 45%;
+  height: 100%;
+}
+
+/* Mise en page du header de la page des pages menu */
+
+.header_menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px;
+  width: 88%;
+  margin-left: 16px;
+
+  @include responsive-tablet {
+    width: 80%;
+  }
+
+  @include responsive-desktop {
+    width: 75%;
+  }
+}
+
+.header__arrow {
+  font-size: 22px;
+
+  & a {
+    color: black;
+  }
+}

@@ -1,0 +1,36 @@
+/* Mixin effet des boutons principaux */
+
+@mixin button-anim ($color: $color-shadow) {
+    box-shadow: $size-shadow darken($color, 30%);
+    opacity: 0.8;
+} 
+
+/* Mixin flex-center */
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mixin responsive */
+
+@mixin responsive-desktop {
+    @media screen and (min-width: map-get($responsive, tablet)) {
+        @content;
+    }
+}
+
+@mixin responsive-tablet {
+    @media screen and (min-width: map-get($responsive, mobile)) {
+        @content;
+    }
+}
+
+@mixin responsive-mobile {
+    @media screen and (min-width: 0) {
+        @content;
+    }  
+}
+
+
