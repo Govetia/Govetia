@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 //import Menu from './components/Menu';
 import Banner from './components/Banner';
-import Header from './components/Header';
 import Projects from './components/Projects';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -14,7 +13,6 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
       <Banner />
-      <Header />
       <Projects />
         <Route path="/Tfek" />
     </ChakraProvider>
