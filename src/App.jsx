@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Tfek from './modules/tfek/Tfek.jsx';
 import OhMyFood from './modules/ohMyFood/OhMyFood.jsx';
 import Govetia from './modules/govetia/Govetia.jsx';
-import Tarawa from './modules/tarawa/Tarawa.jsx';
+import Tarawa from './modules/tarawa/Tarawa.tsx';
 
 function App() {
   return (

@@ -19,7 +19,7 @@ const projectsDetails = [
   },
   {
     title: "Tarawa : Hôtel de luxe",
-    url: "localhost:3000/tarawa",
+    url: "/tarawa",
     picture: "/assets/tarawa.png",
     alt: 'Page accueil site web Tarawa'
   },

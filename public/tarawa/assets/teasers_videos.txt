@@ -1,0 +1,14 @@
+Header principal HD 1080p
+https://player.vimeo.com/progressive_redirect/playback/792253575/rendition/1080p/file.mp4?loc=external&signature=ad1d248d395e69ad0372d1fbdfda94fc4cbde1acac6b0e99da727aa714f31c3b
+
+Header principal HD 720p
+https://player.vimeo.com/progressive_redirect/playback/792253575/rendition/720p/file.mp4?loc=external&signature=330bc77f16767149251523115a87eeaed4931dee14596a9f90d13582c342a4c6
+
+Timeline 21:57
+https://player.vimeo.com/progressive_redirect/playback/867835859/rendition/540p/file.mp4?loc=external&signature=d0565ef23ab1c14f685f47a8e19634b25882f3284308e1af0855092bd22a73ac
+
+Toutes les saveurs des iles
+https://player.vimeo.com/progressive_redirect/playback/867835899/rendition/720p/file.mp4?loc=external&signature=95238a92782907c9dc2b48e7a3868028eb9927cea7c579a285f109ac75c3fe0a
+
+La mer est à vous
+https://player.vimeo.com/progressive_redirect/playback/867835928/rendition/720p/file.mp4?loc=external&signature=037354ab676f274d7ef899b0cace09629ae93351545d3fe9bcc55b8dbf93decd
