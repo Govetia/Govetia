@@ -1,10 +1,10 @@
-import { Flex, Card, CardBody, Box, CardHeader, CardFooter, Image, Button, Heading, Stack, StackDivider, Text } from "@chakra-ui/react";
+import { Flex, Card, CardBody, Box, CardHeader, CardFooter, Image, Button, Heading, Stack, StackDivider, Text, Modal } from "@chakra-ui/react";
 import { chakra } from "@chakra-ui/react";
-
+import CreateModal from "./CreateModal";
 
 const Home = () => {
   return <Flex direction={"column"} justify={'space-around'} align={'center'}  minH={"80vh"}>
-    <Button>Créer un événement</Button>
+    <CreateModal />
     <Flex py={5} justify={'space-around'} align={'center'} w={"100%"}>
       <Card>
         <CardHeader>

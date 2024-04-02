@@ -32,14 +32,10 @@ const Footer = () => {
         >
             <Flex w="100%" padding={5} justify={"space-between"}>
                 <Box>
-                    <p>Télécharger sur le Play store</p>
-                    <FaGooglePlay />
+                    <Image src="/tfek/images/download_play_store.png" alt='télécharger dans le play store' w={"15rem"} />
                 </Box>
-
                 <Box>
-                    <p>Télécharger sur l&apos;Apple store</p>
-                    <IoLogoAppleAppstore />
-
+                    <Image src="/tfek/images/download_app_store.png" alt="télécharger dans l'app store" w={"15rem"} />
                 </Box>
             </Flex>
         </HStack>
