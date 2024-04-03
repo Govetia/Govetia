@@ -11,7 +11,7 @@ function CreateModal() {
 
     return (
       <>
-        <Button onClick={onOpen}>Se connecter</Button>
+        <Button onClick={onOpen}>S&apos;inscrire</Button>
 
         <Modal
           initialFocusRef={initialRef}
@@ -21,9 +21,13 @@ function CreateModal() {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Connexion</ModalHeader>
+            <ModalHeader>Inscription</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
+                <FormControl>
+                <FormLabel>Pseudo</FormLabel>
+                <Input ref={initialRef} placeholder='Pseudo' />
+              </FormControl>
               <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input ref={initialRef} placeholder='Email' />
@@ -36,8 +40,8 @@ function CreateModal() {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme='blue' mr={3}>
-                Se connecter
+              <Button colorScheme='green' mr={3}>
+                S&apos;inscrire
               </Button>
               <Button onClick={onClose}>Annuler</Button>
             </ModalFooter>

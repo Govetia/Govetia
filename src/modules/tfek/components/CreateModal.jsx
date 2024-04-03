@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button'
-import { ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Modal, useDisclosure } from '@chakra-ui/react'
+import { ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Modal, useDisclosure, SimpleGrid, Card, CardHeader, Heading, CardBody, CardFooter, Text, Box, Image } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 
 
@@ -16,6 +16,14 @@ function CreateModal() {
     )
     const [overlay, setOverlay] = useState(<BlurOverlay />)
 
+    const downloadApp = (store) => () => {
+      if (store === 'Android') {
+        window.open('https://play.google.com/store/apps/details?id=com.tfe.k')
+      } else {
+        window.open('https://apps.apple.com/fr/app/tfe-k/id1554238812')
+      }
+    }
+
     return (
       <>
         <Button onClick={() => {
@@ -24,6 +32,7 @@ function CreateModal() {
         }}>Créer un événement</Button>
 
         <Modal
+          size={'xl'}
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
           isOpen={isOpen}
@@ -31,36 +40,30 @@ function CreateModal() {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>La création d&apos;événement s&apos;effectue depuis l&apos;application mobile</ModalHeader>
+            <ModalHeader pt={8}>La création d&apos;événement s&apos;effectue depuis l&apos;application mobile</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Titre de l&apos;événement</FormLabel>
-                <Input ref={initialRef} placeholder='First name' />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Lieu</FormLabel>
-                <Input placeholder='Last name' />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Date</FormLabel>
-                <Input placeholder='Last name' />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Lieu</FormLabel>
-                <Input placeholder='Last name' />
-              </FormControl>
+            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+              <Card  onClick={downloadApp('Android')} className={'pointer'}>
+                <CardHeader>
+                  <Heading size='md'> Android</Heading>
+                </CardHeader>
+                <CardBody>
+                  <Text>Télécharger ici</Text>
+                  <Image src="/tfek/images/download_play_store.png" alt='télécharger dans le play store' w={"15rem"} />
+                </CardBody>
+              </Card>
+              <Card onClick={downloadApp('Apple')} className={'pointer'}>
+                <CardHeader>
+                  <Heading size='md'> iPhone</Heading>
+                </CardHeader>
+                <CardBody onClick={downloadApp('Apple')}>
+                  <Text>Télécharger ici</Text>
+                  <Image src="/tfek/images/download_app_store.png" alt="télécharger dans l'app store" w={"15rem"} />
+                </CardBody>
+              </Card>
+            </SimpleGrid>
             </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3}>
-                Créer
-              </Button>
-              <Button onClick={onClose}>Annuler</Button>
-            </ModalFooter>
           </ModalContent>
         </Modal>
       </>

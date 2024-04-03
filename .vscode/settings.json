@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "Tfek"
+    ],
+    "i18n-ally.localesPaths": [
+        "internationalization/locales"
     ]
 }

@@ -26,10 +26,8 @@ import { BsFillCameraVideoFill } from 'react-icons/bs';
 import { IoIosArrowDown } from "react-icons/io";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useScroll } from 'framer-motion';
-
-
-
-
+import ConnexionModal from './ConnexionModal';
+import LoginModal from './LoginModal';
 
 const Header = () => {
         const { toggleColorMode: toggleMode } = useColorMode();
@@ -86,8 +84,6 @@ const Header = () => {
             </Link>
           );
         };
-      
-        
       
         const MobileNavContent = (
           <VStack
@@ -153,12 +149,8 @@ const Header = () => {
                             md: "flex",
                         }}
                         >
-                        <Button colorScheme="brand" variant="ghost" size="sm">
-                            Se connecter
-                        </Button>
-                        <Button colorScheme="brand" variant="ghost" size="sm">
-                            S&apos;inscrire
-                        </Button>
+                        <ConnexionModal></ConnexionModal>
+                        <LoginModal></LoginModal>
                         </HStack>
                         <IconButton
                         size="md"
