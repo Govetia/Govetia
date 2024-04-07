@@ -13,18 +13,20 @@ const projectsDetails = [
     title: "Agence événementielle Shelter Events",
     url: "https://www.shelterevents.com",
     picture: "/assets/shelter-events.png",
+    macbookVideo: "/assets/videos/macbook-shelter-events.mp4",
     alt: 'Page accueil site web Shelter Events',
   },
-  {
-    title: "Tfek ? L'application de gestion d'événements",
-    url: "/tfek",
-    picture: "/assets/tarawa.png",
-    alt: 'Page accueil site web Tfek'
-  },
+  // {
+  //   title: "Tfek ? L'application de gestion d'événements",
+  //   url: "/tfek",
+  //   picture: "/assets/tarawa.png",
+  //   alt: 'Page accueil site web Tfek'
+  // },
   {
     title: "Tarawa : Hôtel de luxe",
     url: "/tarawa",
     picture: "/assets/tarawa.png",
+    macbookVideo: "/assets/videos/macbook-tarawa.mp4",
     alt: 'Page accueil site web Tarawa'
   },
   {
@@ -40,13 +42,14 @@ function Projects(props) {
   const [isLargerThan768] = useMediaQuery("(min-width: 900px)")
 
   return (
-    <Grid templateColumns={isLargerThan768 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'} gap={0}>
+    <Grid templateColumns={isLargerThan768 ? 'repeat(1, 1fr)' : 'repeat(1, 1fr)'} gap={0}>
       {projectsDetails.map((project, index) => (
         <DeviceCard 
             key={`${project.title}-${index}`}
             title={project.title}
             url={project.url}
-            picture={project.picture} 
+            picture={project.picture}
+            macbookVideo={project.macbookVideo}
             alt={project.alt}
         />
         ))}

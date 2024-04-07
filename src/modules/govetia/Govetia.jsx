@@ -1,12 +1,14 @@
 import Projects from './components/Projects'
 import Banner from './components/Banner'
+import { ChakraProvider } from '@chakra-ui/react'
+import theme from './theme'
 
 function Govetia() {
     return (
-        <div>
+        <ChakraProvider theme={theme}>
             <Banner></Banner>
             <Projects></Projects>
-        </div>
+        </ChakraProvider>
     )
 }
 
