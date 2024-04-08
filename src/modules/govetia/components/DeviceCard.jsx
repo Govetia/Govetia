@@ -32,14 +32,14 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
     if (iphoneVideoRef.current && videoLoaded) {
       iphoneVideoRef.current.play();
     }
-    setIsHovered(true);
+    setIsIphoneHovered(true);
   }
 
   const handleIphoneMouseLeave = () => {
     if (iphoneVideoRef.current && videoLoaded) {
       iphoneVideoRef.current.pause();
     }
-    setIsHovered(false);
+    setIsIphoneHovered(false);
   }
 
 
@@ -84,7 +84,7 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
                                 height: '120%',
                                 objectFit: 'cover',
                                 padding: '4% 18% 23% 8%',
-                                opacity: isHovered ? 1 : 0.5,
+                                opacity: isMacbookHovered ? 1 : 0.5,
                               }}>
                               <source src={macbookVideo} type="video/mp4" />
                               Your browser does not support the video tag.
@@ -100,18 +100,20 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
                       onMouseLeave={handleIphoneMouseLeave}>     
                         {iphoneVideo ?
 
-                          <Box position="relative" overflow="hidden" h="120%" w="100%"  px="5%" pt={"3%"} pb={"10%"}>
-                            <video ref={iphoneVideoRef} muted loop style={{
-                                position: 'absolute',
-                                width: '100%',
-                                height: '120%',
-                                objectFit: 'cover',
-                                padding: '4% 18% 23% 8%',
-                                opacity: isHovered ? 1 : 0.5,
-                              }}>
-                              <source src={iphoneVideo} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
+                          <Box position="relative" overflow="hidden" h="100%" w="100%">
+                            <Box >
+                              <video ref={iphoneVideoRef} muted loop style={{
+                                  position: 'absolute',
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover',
+                                  padding: '0% 32%',
+                                  opacity: isIphoneHovered ? 1 : 0.5,
+                                }}>
+                                <source src={iphoneVideo} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            </Box>
                           </Box>
                           :
                           <Image zIndex={1} src={iphonePicture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
