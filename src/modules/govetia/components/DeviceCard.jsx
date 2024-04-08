@@ -5,36 +5,56 @@ import { Image, Text } from "@chakra-ui/react";
 import React, { useRef, useState, useEffect } from 'react';
 
 
-function DeviceCard({ title, url, picture, macbookVideo, alt }) {
-  const videoRef = useRef();
+function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, macbookVideo, iphoneVideo, alt }) {
+  const macBookVideoRef = useRef();
+  const iphoneVideoRef = useRef();
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isMacbookHovered, setIsMacbookHovered] = useState(false);
+  const [isIphoneHovered, setIsIphoneHovered] = useState(false);
 
-  const handleMouseEnter = () => {
+  const handleMacbookMouseEnter = () => {
     console.log('mouse enter');
-    if (videoRef.current && videoLoaded) {
-      videoRef.current.play();
+    if (macBookVideoRef.current && videoLoaded) {
+      macBookVideoRef.current.play();
+    }
+    setIsMacbookHovered(true);
+  };
+
+  const handleMacbookMouseLeave = () => {
+    if (macBookVideoRef.current && videoLoaded) {
+      macBookVideoRef.current.pause();
+    }
+    setIsMacbookHovered(false);
+  };
+
+  const handleIphoneMouseEnter = () => {
+    console.log('mouse enter');
+    if (iphoneVideoRef.current && videoLoaded) {
+      iphoneVideoRef.current.play();
     }
     setIsHovered(true);
-  };
+  }
 
-  const handleMouseLeave = () => {
-    if (videoRef.current && videoLoaded) {
-      videoRef.current.pause();
+  const handleIphoneMouseLeave = () => {
+    if (iphoneVideoRef.current && videoLoaded) {
+      iphoneVideoRef.current.pause();
     }
     setIsHovered(false);
-  };
+  }
+
+
+
   useEffect(() => {
-    const video = videoRef.current;
+    const macbookVideo = macBookVideoRef.current;
     const handleLoadedData = () => setVideoLoaded(true);
 
-    if (video) {
-      video.addEventListener('loadeddata', handleLoadedData);
+    if (macbookVideo) {
+      macbookVideo.addEventListener('loadeddata', handleLoadedData);
     }
 
     return () => {
-      if (video) {
-        video.removeEventListener('loadeddata', handleLoadedData);
+      if (macbookVideo) {
+        macbookVideo.removeEventListener('loadeddata', handleLoadedData);
       }
     };
   }, []);
@@ -49,34 +69,53 @@ function DeviceCard({ title, url, picture, macbookVideo, alt }) {
                     <Text  fontSize={25} fontWeight="600" >{title}</Text>
                     <Flex>
                       <Flex direction='column' align='center' position="relative" width="100%" justifyContent={"center"} alignItems={"center"}>
-                        <Image zIndex={1} src={picture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
+                        <Image zIndex={1} src={imacPicture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
                         <Box zIndex={2} position="absolute"  width="100%" height="100%" backgroundImage={"/assets/device/imac.png"} backgroundSize="contain" backgroundRepeat="no-repeat" backgroundPosition="center"></Box>
                       </Flex>
                       <Flex direction='column' align='center' position="relative" width="100%" justifyContent={"center"} alignItems={"center"}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}>     
+                      onMouseEnter={handleMacbookMouseEnter}
+                      onMouseLeave={handleMacbookMouseLeave}>     
                         {macbookVideo ?
 
                           <Box position="relative" overflow="hidden" h="120%" w="100%"  px="5%" pt={"3%"} pb={"10%"}>
-                            <video ref={videoRef} muted loop style={{
+                            <video ref={macBookVideoRef} muted loop style={{
                                 position: 'absolute',
                                 width: '100%',
                                 height: '120%',
                                 objectFit: 'cover',
                                 padding: '4% 18% 23% 8%',
-                                opacity: isHovered ? 1 : 0.3,
+                                opacity: isHovered ? 1 : 0.5,
                               }}>
                               <source src={macbookVideo} type="video/mp4" />
                               Your browser does not support the video tag.
                             </video>
                           </Box>
                           :
-                          <Image zIndex={1} src={picture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
+                          <Image zIndex={1} src={macbookPicture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
                         }
                         <Box zIndex={2} position="absolute"  width="100%" height="100%" backgroundImage={"/assets/device/macbook.png"} backgroundSize="contain" backgroundRepeat="no-repeat" backgroundPosition="center"></Box>
                       </Flex>
-                      <Flex direction='column' align='center' position="relative" width="100%" justifyContent={"center"} alignItems={"center"}>
-                        <Image zIndex={1} src={picture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
+                      <Flex direction='column' align='center' position="relative" width="100%" justifyContent={"center"} alignItems={"center"}
+                      onMouseEnter={handleIphoneMouseEnter}
+                      onMouseLeave={handleIphoneMouseLeave}>     
+                        {iphoneVideo ?
+
+                          <Box position="relative" overflow="hidden" h="120%" w="100%"  px="5%" pt={"3%"} pb={"10%"}>
+                            <video ref={iphoneVideoRef} muted loop style={{
+                                position: 'absolute',
+                                width: '100%',
+                                height: '120%',
+                                objectFit: 'cover',
+                                padding: '4% 18% 23% 8%',
+                                opacity: isHovered ? 1 : 0.5,
+                              }}>
+                              <source src={iphoneVideo} type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
+                          </Box>
+                          :
+                          <Image zIndex={1} src={iphonePicture} alt={alt} width="100%" height="120%" objectFit="contain" px="8%" pt={"2%"} pb={"15%"} />
+                        }
                         <Box zIndex={2} position="absolute"  width="100%" height="100%" backgroundImage={"/assets/device/iphone.png"} backgroundSize="contain" backgroundRepeat="no-repeat" backgroundPosition="center"></Box>
                       </Flex>
            

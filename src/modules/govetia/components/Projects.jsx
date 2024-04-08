@@ -12,8 +12,11 @@ const projectsDetails = [
   {
     title: "Agence événementielle Shelter Events",
     url: "https://www.shelterevents.com",
-    picture: "/assets/shelter-events.png",
+    imacPicture: "/assets/shelter-events.png",
+    macbookPicture: "/assets/shelter-events.png",
+    iphonePicture: "/assets/shelter-events.png",
     macbookVideo: "/assets/videos/macbook-shelter-events.mp4",
+    iphoneVideo: "/assets/videos/iphone-shelter-events.mp4",
     alt: 'Page accueil site web Shelter Events',
   },
   // {
@@ -25,14 +28,18 @@ const projectsDetails = [
   {
     title: "Tarawa : Hôtel de luxe",
     url: "/tarawa",
-    picture: "/assets/tarawa.png",
+    imacPicture: "/assets/tarawa.png",
+    macbookPicture: "/assets/tarawa.png",
+    iphonePicture: "/assets/tarawa.png",
     macbookVideo: "/assets/videos/macbook-tarawa.mp4",
     alt: 'Page accueil site web Tarawa'
   },
   {
     title: "Oh my food : Restaurant",
     url: "/ohMyFood",
-    picture: "/assets/oh_my_food.png",
+    imacPicture: "/assets/oh_my_food.png",
+    macbookPicture: "/assets/oh_my_food.png",
+    iphonePicture: "/assets/oh_my_food.png",
     alt: 'Page accueil site web Oh my food'
   }
 ]
@@ -48,8 +55,11 @@ function Projects(props) {
             key={`${project.title}-${index}`}
             title={project.title}
             url={project.url}
-            picture={project.picture}
+            imacPicture={project.imacPicture}
+            macbookPicture={project.macbookPicture}
+            iphonePicture={project.iphonePicture}
             macbookVideo={project.macbookVideo}
+            iphoneVideo={project.iphoneVideo}
             alt={project.alt}
         />
         ))}
