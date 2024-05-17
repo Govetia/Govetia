@@ -14,7 +14,7 @@ function Govetia() {
         <div>
             <Banner></Banner>
             {/* <Projects></Projects> */}
-            <Flex >
+            {/* <Flex >
             <Box className= "gvt-projects"  >
                 <a
                   href= {tfekProject.url}
@@ -26,7 +26,7 @@ function Govetia() {
                   </Flex>
                 </a>
             </Box>
-          </Flex>
+          </Flex> */}
         </div>
     )
 }
