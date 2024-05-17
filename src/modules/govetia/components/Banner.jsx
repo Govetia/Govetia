@@ -22,7 +22,15 @@ function Banner() {
                 Your browser does not support the video tag.
                 </video>
                 <Flex w="100%" h="100%" justifyContent="center" align="center" position="relative">
-                    <h1 className='gvt-title'>{title}</h1>
+                    <div class="disappear">
+                        <span>G</span>
+                        <span>O</span>
+                        <span>V</span>
+                        <span>E</span>
+                        <span>T</span>
+                        <span>I</span>
+                        <span>A</span>
+                        </div>
                 </Flex>
                 {/* <div className='gvt-banner'>
                     

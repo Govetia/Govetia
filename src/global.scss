@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Back To Black Demo';
+    src: url('./modules/tfek/assets/fonts/back_to_black/BacktoBlackDemo.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Boogie boys';
+    src: url('../public/assets/fonts/BoogieBoys.ttf') format('truetype');
+  }
+
+  
+  h1 {
+    font-family: 'Boogie boys';
+    font-size: 2.3rem;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
