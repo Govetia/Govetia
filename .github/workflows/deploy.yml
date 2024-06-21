@@ -10,12 +10,20 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '18.17.1'
+    - name: Check Node.js and npm versions
+      run: |
+        node -v
+        npm -v
     - name: Clean npm cache
       run: npm cache clean --force
     - run: npm install
     - run: npm ci
-    - run: npm run build
+    - name: Build project
+      run: |
+        npm run build
+        echo "Build directory contents:"
+        ls -la build
     - run: ls -R build
     - name: Deploy to Hostinger
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
