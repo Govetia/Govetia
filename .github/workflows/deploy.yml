@@ -20,7 +20,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.shelterevents.com
-        username: u875133030.govetia.com
+        username: u875133030
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./build/
         server-dir: /public_html/
