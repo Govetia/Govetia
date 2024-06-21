@@ -22,5 +22,5 @@ jobs:
         server: 62.72.37.112
         username: u875133030.Govetia
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: /build/
+        local-dir: ./build/
         server-dir: /
