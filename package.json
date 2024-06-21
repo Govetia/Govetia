@@ -50,10 +50,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run copy-server",
+    "build": "react-scripts build && npm run copy-config",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy-server": "cp -r server/* build/ && cp composer.json build/"
+    "copy-config": "cp .htaccess index.php composer.json build/"
   },
   "eslintConfig": {
     "extends": [
