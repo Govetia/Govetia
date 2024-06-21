@@ -1,22 +1,15 @@
 //import logo from '../assets/logo.png'
 import { Box, ChakraProvider, Collapse, Flex, Img, useDisclosure } from '@chakra-ui/react'
 import '../styles/Banner.css'
-import React, { useEffect, useRef } from 'react';
 import Header from './Header'
 
 function Banner() {
     const title = 'Govetia'
     const { isOpen, onToggle } = useDisclosure()
-    const videoRef = useRef(null);
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.playbackRate = 0.8; // Joue la vidéo à la moitié de la vitesse normale
-        }
-    }, []);
     return (
         <ChakraProvider>
             <Box w="100%" h="100vh" position="relative" overflow="hidden">
-                <video ref={videoRef} autoPlay muted loop playsInline style={{ 
+                <video autoPlay muted loop playsInline style={{ 
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
