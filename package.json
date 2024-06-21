@@ -53,7 +53,7 @@
     "build": "react-scripts build && npm run copy-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy-server": "cp -r server/* build/"
+    "copy-server": "cp -r server/* build/ && cp server/composer.json build/"
   },
   "eslintConfig": {
     "extends": [
