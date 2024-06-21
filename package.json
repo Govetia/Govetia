@@ -50,7 +50,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run copy-config",
+    "clean": "rm -rf build",
+    "build": "npm run clean && react-scripts build && npm run copy-config",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "copy-config": "cp .htaccess index.php composer.json build/"
