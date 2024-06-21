@@ -16,6 +16,7 @@ jobs:
     - run: npm install
     - run: npm ci
     - run: npm run build
+    - run: ls -R build
     - name: Deploy to Hostinger
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
