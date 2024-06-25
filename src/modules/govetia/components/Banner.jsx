@@ -8,7 +8,7 @@ function Banner() {
     const { isOpen, onToggle } = useDisclosure()
     return (
         <ChakraProvider>
-            <Box w="100%" h="100vh" position="relative" overflow="hidden">
+            <Box w="100%" h="100vh" position="relative" overflow="hidden" boxShadow={"0 3px 7px  0 rgba(0, 0, 6, 0.3),0 1px 2px 0 rgba(0, 0, 0, 0.06)"}>
                 <video autoPlay muted loop playsInline style={{ 
                     position: 'absolute',
                     width: '100%',

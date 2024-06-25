@@ -1,64 +1,71 @@
 //import logo from '../assets/logo.png'
 import { Box, Grid, Flex } from '@chakra-ui/react';
 import '../styles/Projects.css';
-import { Image, Text } from "@chakra-ui/react";
+import { Image, Text, Heading } from "@chakra-ui/react";
 import React from 'react';
+import DeviceCard from './DeviceCard';
+
+import { useMediaQuery } from "@chakra-ui/react"
+
 
 const projectsDetails = [
   {
     title: "Agence événementielle Shelter Events",
     url: "https://www.shelterevents.com",
-    picture: "/assets/shelter-events.png",
+    imacPicture: "/assets/shelter-events.png",
+    macbookPicture: "/assets/shelter-events.png",
+    iphonePicture: "/assets/shelter-events.png",
+    macbookVideo: "/assets/videos/macbook-shelter-events.mp4",
+    iphoneVideo: "/assets/videos/iphone-shelter-events.mp4",
     alt: 'Page accueil site web Shelter Events',
   },
-  {
-    title: "Tfek ? L'application de gestion d'événements",
-    url: "/tfek",
-    picture: "/assets/tarawa.png",
-    alt: 'Page accueil site web Tfek'
-  },
-  {
-    title: "Tarawa : Hôtel de luxe",
-    url: "/tarawa",
-    picture: "/assets/tarawa.png",
-    alt: 'Page accueil site web Tarawa'
-  },
-  {
-    title: "Oh my food : Restaurant",
-    url: "/ohMyFood",
-    picture: "/assets/oh_my_food.png",
-    alt: 'Page accueil site web Oh my food'
-  }
+  // {
+  //   title: "Tfek ? L'application de gestion d'événements",
+  //   url: "/tfek",
+  //   picture: "/assets/tarawa.png",
+  //   alt: 'Page accueil site web Tfek'
+  // },
+  // {
+  //   title: "Tarawa : Hôtel de luxe",
+  //   url: "/tarawa",
+  //   imacPicture: "/assets/tarawa.png",
+  //   macbookPicture: "/assets/tarawa.png",
+  //   iphonePicture: "/assets/tarawa.png",
+  //   macbookVideo: "/assets/videos/macbook-tarawa.mp4",
+  //   alt: 'Page accueil site web Tarawa'
+  // },
+  // {
+  //   title: "Oh my food : Restaurant",
+  //   url: "/ohMyFood",
+  //   imacPicture: "/assets/oh_my_food.png",
+  //   macbookPicture: "/assets/oh_my_food.png",
+  //   iphonePicture: "/assets/oh_my_food.png",
+  //   alt: 'Page accueil site web Oh my food'
+  // }
 ]
-
-function Card({ title, url, picture, alt }) {
-  return (
-    <Flex >
-      <Box className= "gvt-projects"  >
-          <a
-            href= {url}
-            target="_blank"
-            rel="noreferrer" >
-            <Flex direction='column' align='center'>
-              <Text p='8' fontSize={25} fontWeight="600" >{title}</Text>
-              <Image borderRadius="1.5em" border="1px solid #ffff"  maxWidth='85%' boxShadow="0px 0px 18px rgba(0, 0, 0, 0.5)" src={picture} alt={alt} />
-            </Flex>
-          </a>
-      </Box>
-    </Flex>
-  )
-}
 
 
 function Projects(props) {
+  const [isLargerThan768] = useMediaQuery("(min-width: 900px)")
+
   return (
-    <Grid templateColumns='repeat(2, 1fr)' gap={0}>
+    <Grid style={{ 
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      }} templateColumns={isLargerThan768 ? 'repeat(1, 1fr)' : 'repeat(1, 1fr)'} gap={0}>
+      <Heading pt={'2rem'} >Découvrez nos créations</Heading>
       {projectsDetails.map((project, index) => (
-        <Card 
+        <DeviceCard 
             key={`${project.title}-${index}`}
             title={project.title}
             url={project.url}
-            picture={project.picture} 
+            imacPicture={project.imacPicture}
+            macbookPicture={project.macbookPicture}
+            iphonePicture={project.iphonePicture}
+            macbookVideo={project.macbookVideo}
+            iphoneVideo={project.iphoneVideo}
             alt={project.alt}
         />
         ))}
