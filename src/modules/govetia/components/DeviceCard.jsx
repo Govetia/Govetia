@@ -13,7 +13,6 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
   const [isIphoneHovered, setIsIphoneHovered] = useState(false);
 
   const handleMacbookMouseEnter = () => {
-    console.log('mouse enter');
     if (macBookVideoRef.current && videoLoaded) {
       macBookVideoRef.current.play();
     }
@@ -28,7 +27,6 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
   };
 
   const handleIphoneMouseEnter = () => {
-    console.log('mouse enter');
     if (iphoneVideoRef.current && videoLoaded) {
       iphoneVideoRef.current.play();
     }
@@ -101,13 +99,16 @@ function DeviceCard({ title, url, imacPicture, macbookPicture, iphonePicture, ma
                         {iphoneVideo ?
 
                           <Box position="relative" overflow="hidden" h="100%" w="100%">
-                            <Box >
+                            <Box style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                            }}>
                               <video ref={iphoneVideoRef} muted loop style={{
                                   position: 'absolute',
-                                  width: '100%',
+                                  width: '37%',
+                                  borderRadius: '15%',
                                   height: '100%',
                                   objectFit: 'cover',
-                                  padding: '0% 32%',
                                   opacity: isIphoneHovered ? 1 : 0.5,
                                 }}>
                                 <source src={iphoneVideo} type="video/mp4" />
