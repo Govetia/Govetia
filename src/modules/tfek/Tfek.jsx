@@ -14,7 +14,6 @@ function Tfek() {
     }}>
       <Header></Header>
       <HomePage></HomePage>
-      <Footer></Footer>
     </ChakraProvider>
   )
 }

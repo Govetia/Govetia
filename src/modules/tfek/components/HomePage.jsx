@@ -1,10 +1,64 @@
 import { Flex, Card, CardBody, Box, CardHeader, CardFooter, Image, Button, Heading, Stack, StackDivider, Text, Modal } from "@chakra-ui/react";
 import { chakra } from "@chakra-ui/react";
 import CreateModal from "./CreateModal";
+import EventCalendar from "./EventCalendar";
+import EventList from "./EventList";
+import { useState } from "react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 const Home = () => {
+  const [events, setEvents] = useState([
+    { id: 1, title: 'Réunion', date: '2024-08-01', host: true, participants: 5 },
+    { id: 2, title: 'Anniversaire', date: '2024-08-05', host: false, participants: 10 },
+    // Ajoutez d'autres événements ici
+  ]);
+
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const handleEventClick = (info) => {
+    setSelectedEvent(info.event);
+  };
+
   return <Flex direction={"column"} justify={'space-around'} align={'center'}  minH={"80vh"}>
     <CreateModal />
+    <Tabs isFitted variant='enclosed' w="100%" py={5}>
+      <TabList mb='1em'>
+        <Tab>Liste</Tab>
+        <Tab>Calendrier</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <EventList events={events} onEventClick={handleEventClick} />
+        </TabPanel>
+        <TabPanel>
+          <Card>
+            <CardHeader>
+              <Heading size="md">Calendrier</Heading>
+            </CardHeader>
+            <CardBody>
+              <EventCalendar events={events} onEventClick={handleEventClick} />
+            </CardBody>
+          </Card>
+          {selectedEvent && (
+            <Modal isOpen={true} onClose={() => setSelectedEvent(null)}>
+              <Modal.Content>
+                <Modal.Header>{selectedEvent.title}</Modal.Header>
+                <Modal.Body>
+                  <Text>Date: {selectedEvent.start}</Text>
+                  <Text>Participants: {selectedEvent.extendedProps.participants}</Text>
+                  {/* Ajoutez d'autres détails ici */}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={() => setSelectedEvent(null)}>Fermer</Button>
+                </Modal.Footer>
+              </Modal.Content>
+            </Modal>
+          )}
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+    
+
     <Flex py={5} justify={'space-around'} align={'center'} w={"100%"}>
       <Card>
         <CardHeader>
