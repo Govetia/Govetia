@@ -23,13 +23,10 @@ const Home = () => {
     <CreateModal />
     <Tabs isFitted variant='enclosed' w="100%" py={5}>
       <TabList mb='1em'>
-        <Tab>Liste</Tab>
         <Tab>Calendrier</Tab>
+        <Tab>Liste</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
-          <EventList events={events} onEventClick={handleEventClick} />
-        </TabPanel>
         <TabPanel>
           <Card>
             <CardHeader>
@@ -54,6 +51,9 @@ const Home = () => {
               </Modal.Content>
             </Modal>
           )}
+        </TabPanel>
+        <TabPanel>
+          <EventList events={events} onEventClick={handleEventClick} />
         </TabPanel>
       </TabPanels>
     </Tabs>

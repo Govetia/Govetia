@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { Box } from '@chakra-ui/react'
 import { ChakraProvider } from "@chakra-ui/react";
+import { UserProvider } from './context/user.context';
 
 
 function Tfek() {
@@ -12,8 +13,10 @@ function Tfek() {
     _dark={{
       bg: "#3e3e3e",
     }}>
-      <Header></Header>
-      <HomePage></HomePage>
+      <UserProvider>
+        <Header></Header>
+        <HomePage></HomePage>
+      </UserProvider>
     </ChakraProvider>
   )
 }
