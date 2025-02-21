@@ -22,4 +22,11 @@ httpService.interceptors.request.use(
   }
 );
 
+httpService.noAuth = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 export default httpService;

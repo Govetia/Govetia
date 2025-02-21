@@ -1,8 +1,8 @@
 
 import HomePage from './components/HomePage'
 import Header from './components/Header'
-import Footer from './components/Footer'
-import { Box } from '@chakra-ui/react'
+import Invitation from './components/Invitation'
+import { Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react";
 import { UserProvider } from './context/user.context';
 
@@ -15,7 +15,10 @@ function Tfek() {
     }}>
       <UserProvider>
         <Header></Header>
-        <HomePage></HomePage>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/invitation" element={<HomePage />} />
+        </Routes>
       </UserProvider>
     </ChakraProvider>
   )

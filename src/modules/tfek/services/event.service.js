@@ -14,6 +14,11 @@ export const getEventById = async (id) => {
   return response.data;
 };
 
+export const getEventByInvitationToken = async (invitationToken) => {
+  const response = await httpService.noAuth.get(`${API_EVENTS_URL}/by_token/${invitationToken}`);
+  return response.data;
+};
+
 // Créer un nouvel événement
 export const createEvent = async (eventData) => {
   const response = await httpService.post(API_EVENTS_URL, eventData);
