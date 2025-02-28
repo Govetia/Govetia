@@ -1,5 +1,30 @@
-import { Button } from '@chakra-ui/button'
-import { ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Modal, useDisclosure, SimpleGrid, Card, CardHeader, Heading, CardBody, CardFooter, Text, Box, Image } from '@chakra-ui/react'
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Box,
+  Image,
+  useDisclosure,
+  SimpleGrid,
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  CardFooter,
+  Text,
+  IconButton,
+
+} from '@chakra-ui/react';
+import { SearchIcon, AddIcon, CalendarIcon, TimeIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react'
 
 
@@ -15,14 +40,19 @@ function CreateModal() {
       />
     )
     const [overlay, setOverlay] = useState(<BlurOverlay />)
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Logique pour créer un nouvel événement
+      onClose();
+    };
 
-    const downloadApp = (store) => () => {
-      if (store === 'Android') {
-        window.open('https://play.google.com/store/apps/details?id=com.tfe.k')
-      } else {
-        window.open('https://apps.apple.com/fr/app/tfe-k/id1554238812')
-      }
-    }
+    const selectImage = () => {
+      // Logique pour sélectionner une image
+    };
+  
+    const addEndDate = () => {
+      // Logique pour ajouter une date de fin
+    };
 
     return (
       <>
@@ -40,29 +70,44 @@ function CreateModal() {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader pt={8}>La création d&apos;événement s&apos;effectue depuis l&apos;application mobile</ModalHeader>
+            <ModalHeader>Créer un nouvel événement</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={6}>
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-              <Card  onClick={downloadApp('Android')} className={'pointer'}>
-                <CardHeader>
-                  <Heading size='md'> Android</Heading>
-                </CardHeader>
-                <CardBody>
-                  <Text>Télécharger ici</Text>
-                  <Image src="/tfek/images/download_play_store.png" alt='télécharger dans le play store' w={"15rem"} />
-                </CardBody>
-              </Card>
-              <Card onClick={downloadApp('Apple')} className={'pointer'}>
-                <CardHeader>
-                  <Heading size='md'> iPhone</Heading>
-                </CardHeader>
-                <CardBody onClick={downloadApp('Apple')}>
-                  <Text>Télécharger ici</Text>
-                  <Image src="/tfek/images/download_app_store.png" alt="télécharger dans l'app store" w={"15rem"} />
-                </CardBody>
-              </Card>
-            </SimpleGrid>
+            <ModalBody>
+              <form onSubmit={handleSubmit}>
+               
+                <FormControl>
+                  <FormLabel>Titre</FormLabel>
+                  <Input type="text" placeholder="Titre..." />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Date de début</FormLabel>
+                  <Input type="date" />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Date de fin</FormLabel>
+                  <Input type="date" />
+                  <IconButton
+                    aria-label="Ajouter une date de fin"
+                    icon={<AddIcon />}
+                    onClick={addEndDate}
+                    mt={2}
+                  />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Lieu</FormLabel>
+                  <Input type="text" placeholder="Lieu..." />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Description</FormLabel>
+                  <Textarea placeholder="Décrire l'événement..." />
+                </FormControl>
+                <ModalFooter>
+                  <Button colorScheme="blue" mr={3} type="submit">
+                    Créer
+                  </Button>
+                  <Button variant="ghost" onClick={onClose}>Annuler</Button>
+                </ModalFooter>
+              </form>
             </ModalBody>
           </ModalContent>
         </Modal>

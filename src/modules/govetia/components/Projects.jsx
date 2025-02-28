@@ -9,22 +9,21 @@ import { useMediaQuery } from "@chakra-ui/react"
 
 
 const projectsDetails = [
-  {
-    title: "Agence événementielle Shelter Events",
-    url: "https://www.shelterevents.com",
-    imacPicture: "/assets/shelter-events.png",
-    macbookPicture: "/assets/shelter-events.png",
-    iphonePicture: "/assets/shelter-events.png",
-    macbookVideo: "/assets/videos/macbook-shelter-events.mp4",
-    iphoneVideo: "/assets/videos/iphone-shelter-events.mp4",
-    alt: 'Page accueil site web Shelter Events',
-  },
   // {
-  //   title: "Tfek ? L'application de gestion d'événements",
-  //   url: "/tfek",
-  //   picture: "/assets/tarawa.png",
-  //   alt: 'Page accueil site web Tfek'
+  //   title: "Agence événementielle Shelter Events",
+  //   url: "https://www.shelterevents.com",
+  //   imacPicture: "/assets/shelter-events.png",
+  //   macbookPicture: "/assets/shelter-events.png",
+  //   iphonePicture: "/assets/shelter-events.png",
+  //   macbookVideo: "/assets/videos/macbook-shelter-events.mp4",
+  //   iphoneVideo: "/assets/videos/iphone-shelter-events.mp4",
+  //   alt: 'Page accueil site web Shelter Events',
   // },
+  {
+    title: "Tfek ? L'application de gestion d'événements",
+    url: "/tfek",
+    alt: 'Page accueil site web Tfek'
+  },
   // {
   //   title: "Tarawa : Hôtel de luxe",
   //   url: "/tarawa",
