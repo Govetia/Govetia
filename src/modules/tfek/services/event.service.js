@@ -21,7 +21,9 @@ export const getEventByInvitationToken = async (invitationToken) => {
 
 // Créer un nouvel événement
 export const createEvent = async (eventData) => {
+  console.log(eventData);
   const response = await httpService.post(API_EVENTS_URL, eventData);
+  console.log(response);
   return response.data;
 };
 
