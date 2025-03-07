@@ -18,13 +18,8 @@ function AuthModal() {
 
 
     const handleSubmit = async () => {
-      try {
-        let user = null
-        if (isRegister) {
-          user = await registerUser({ username, email, password });
-        } else {
-          user = await loginUser({ email, password });
-        }
+      connection().then((user) => {
+        console.log(user);
         toast({
           title: 'Authentification réussie',
           status: 'success',
@@ -33,7 +28,8 @@ function AuthModal() {
         });
         loginContext(user);
         onClose();
-      } catch (error) {
+      }).catch((error) => {
+        console.log(error);
         toast({
           title: 'Erreur lors de l\'authentification',
           description: error.response.data.message,
@@ -41,8 +37,17 @@ function AuthModal() {
           duration: 3000,
           isClosable: true,
         });
-      }
+
+      });
     };
+
+    const connection = async () => {
+      if (isRegister) {
+        return registerUser({ username, email, password });
+      } else {
+        return loginUser({ email, password });
+      }
+    }
 
     return (
       <>

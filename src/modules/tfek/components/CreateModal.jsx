@@ -20,6 +20,9 @@ import { useRef, useState } from 'react';
 import { createEvent } from '../services/event.service';
 import { useUser } from '../context/user.context';
 import { IoMdAdd } from "react-icons/io";
+import { IoRemove } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 
 function CreateModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +30,7 @@ function CreateModal() {
   const finalRef = useRef(null);
   const user = useUser();
   const toast = useToast();
+  const navigate = useNavigate(); // Initialize useNavigate
   const [isWithEndDate, setIsWithEndDate] = useState(false);
 
   const BlurOverlay = () => (
@@ -47,36 +51,36 @@ function CreateModal() {
   });
 
   const handleChange = (e) => {
-    console.log(user);
     const { name, value } = e.target;
     setEventData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    console.log(eventData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await createEvent(eventData);
+      createEvent(eventData).then((res) => {
+        console.log('Event created:', res);
+        toast({
+          title: 'Événement créé',
+          description: 'Votre événement a été créé avec succès.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        onClose();
+        navigate(`/tfek/events/${res.data.event.id}`);
+      }).catch((error) => {
+        console.error('Error creating event:', error);
       toast({
-        title: 'Événement créé',
-        description: 'Votre événement a été créé avec succès.',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-      onClose();
-    } catch (error) {
-      toast({
-        title: 'Erreur',
-        description: 'Erreur lors de la création de l\'événement',
+        title: 'Erreur lors de la création de l\'événement',
+        description: error.response.data.message,
         status: 'error',
         duration: 5000,
         isClosable: true,
       });
-    }
+    });
   };
 
   const addEndDate = () => {
@@ -131,14 +135,14 @@ function CreateModal() {
                   onChange={handleChange}
                 />
               </FormControl>
-              {isWithEndDate && 
+              {!isWithEndDate && 
               <Button colorPalette="teal" variant="outline" onClick={addEndDate}>
                 Ajouter une date de fin <IoMdAdd />
               </Button>
               }
-              {!isWithEndDate &&
+              {isWithEndDate &&
                 <Button colorPalette="teal" variant="outline" onClick={removeEndDate}>
-                  Retirer la date de fin <IoMdAdd />
+                  Retirer la date de fin <IoRemove />
                 </Button>
               }
               {isWithEndDate && 

@@ -10,8 +10,7 @@ export const getEvents = async () => {
 
 // Récupérer un événement par ID
 export const getEventById = async (id) => {
-  const response = await httpService.get(`${API_EVENTS_URL}/${id}`);
-  return response.data;
+  return httpService.get(`${API_EVENTS_URL}/${id}`);
 };
 
 export const getEventByInvitationToken = async (invitationToken) => {
@@ -21,10 +20,7 @@ export const getEventByInvitationToken = async (invitationToken) => {
 
 // Créer un nouvel événement
 export const createEvent = async (eventData) => {
-  console.log(eventData);
-  const response = await httpService.post(API_EVENTS_URL, eventData);
-  console.log(response);
-  return response.data;
+  return httpService.post(API_EVENTS_URL, eventData);
 };
 
 // Mettre à jour un événement

@@ -6,7 +6,7 @@ import { useUser } from '../context/user.context';
 const EventList = ({ events, onEventClick }) => {
   const { user } = useUser();
 
-  console.log(events);
+  console.log('events', events);
   console.log(user);
 
   function formatDate(date) {
@@ -14,11 +14,19 @@ const EventList = ({ events, onEventClick }) => {
   }
   return (
     <VStack align="stretch" spacing={4}>
-      <Flex justify={'space-around'}>
+      { events.length === 0 && 
+        <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'}>
+          <Text fontSize={'3xl'}>Aucun événement</Text>
+        </Flex> 
+      }
+      <Flex justify={'space-around'} flexWrap={'wrap'}>
         {events.map((event) => (
           <Box
             key={event.id}
             p={4}
+            m={3}
+            flex={"1 1 0"}
+            minW={"10rem"}
             borderWidth="1px"
             borderRadius="md"
             boxShadow="md"

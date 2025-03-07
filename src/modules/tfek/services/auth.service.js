@@ -9,11 +9,15 @@ export const registerUser = async (userData) => {
 
 // Connecter un utilisateur
 export const loginUser = async (userData) => {
-  const response = await httpService.post('/login', userData);
-  if (response.data.token) {
-    localStorage.setItem('token', response.data.token);
+  try {
+    const response = await httpService.post('/login', userData);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+    }
+    return response.data.user;
+  } catch (error) {
+    throw error;
   }
-  return response.data.user;
 };
 
 // Déconnecter l'utilisateur

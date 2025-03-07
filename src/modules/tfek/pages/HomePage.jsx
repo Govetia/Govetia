@@ -1,18 +1,20 @@
 import { Flex, Card, CardBody, Box, CardHeader, Button, Heading, Text, Modal } from "@chakra-ui/react";
-import CreateModal from "./CreateModal";
-import EventCalendar from "./EventCalendar";
-import EventList from "./EventList";
+import CreateModal from "../components/CreateModal";
+import EventCalendar from "../components/EventCalendar";
+import EventList from "../components/EventList";
 import { useEffect, useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { getEvents } from '../services/event.service';
 import { useUser } from '../context/user.context';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [events, setEvents] = useState([]);
   const { user } = useUser();
+  const navigate = useNavigate();
     useEffect(() => {
       user && getEvents().then((data) => {
-        console.log(data);
+        console.log('getEvents', data);
         setEvents(data);
       });
     }, []);
@@ -20,11 +22,7 @@ const Home = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handleEventClick = (info) => {
-    setSelectedEvent(info.event);
-    getEvents().then((data) => {
-      console.log('events', data);
-      setEvents(data);
-    });
+    navigate(`/tfek/events/${info.id}`);
   };
 
   return <Flex direction={"column"} justify={'flex-start'} align={'center'}  minH={"80vh"}>
@@ -46,20 +44,6 @@ const Home = () => {
                 <EventCalendar events={events} onEventClick={handleEventClick} />
               </CardBody>
             </Card>
-            {selectedEvent && (
-              <Modal isOpen={true} onClose={() => setSelectedEvent(null)}>
-                <Modal.Content>
-                  <Modal.Header>{selectedEvent.title}</Modal.Header>
-                  <Modal.Body>
-                    <Text>Date: {selectedEvent.start}</Text>
-                    <Text>Participants: {selectedEvent.extendedProps.participants}</Text>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button onClick={() => setSelectedEvent(null)}>Fermer</Button>
-                  </Modal.Footer>
-                </Modal.Content>
-              </Modal>
-            )}
           </TabPanel>
           <TabPanel>
             <EventList events={events} onEventClick={handleEventClick} />
