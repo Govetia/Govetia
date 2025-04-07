@@ -8,6 +8,16 @@ export const getEvents = async () => {
   return response.data;
 };
 
+export const getEventsCreatedByUser = async (userId) => {
+  const response = await httpService.get(`${API_EVENTS_URL}/created/${userId}`);
+  return response.data;
+}
+
+export const getEventsInvitedToUser = async (userId) => {
+  const response = await httpService.get(`${API_EVENTS_URL}/invited/${userId}`);
+  return response.data;
+}
+
 // Récupérer un événement par ID
 export const getEventById = async (id) => {
   return httpService.get(`${API_EVENTS_URL}/${id}`);
@@ -33,3 +43,4 @@ export const updateEvent = async (id, eventData) => {
 export const deleteEvent = async (id) => {
   await httpService.delete(`${API_EVENTS_URL}/${id}`);
 };
+

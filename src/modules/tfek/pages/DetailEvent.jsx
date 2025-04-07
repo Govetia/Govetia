@@ -99,7 +99,7 @@ const DetailEvent = () => {
             { author && author.id !== user.user.id && 
               <Flex spacing={4} justify={'space-between'}>
                 <Button colorScheme="green">
-                  Accepter
+                  Accepter lala
                 </Button>
                 <Button colorScheme="yellow" >
                   Peut-être

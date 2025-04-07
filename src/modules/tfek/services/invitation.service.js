@@ -31,7 +31,12 @@ export const deleteInvitation = async (id) => {
   await httpService.delete(`${API_INVITATION_URL}/${id}`);
 };
 
-export const respondToInvitation = async (eventId, token, responseData) => {
-    const response = await httpService.post(`/invitations/respond`, { eventId, token, ...responseData });
+export const respondToInvitation = async (eventId, userId, name, status) => {
+    const response = await httpService.post(`/invitations/respond`, { 
+      eventId,
+      userId,
+      name,
+      status
+    });
     return response.data;
   };

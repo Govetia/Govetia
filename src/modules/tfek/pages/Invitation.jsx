@@ -12,46 +12,46 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { getEventByInvitationToken } from '../services/event.service';
+import { getParticipantReponsesByEventId } from '../services/response.service';
 import { getUserById } from '../services/user.service';
+import { respondToInvitation } from '../services/invitation.service';
+import { useUser } from '../context/user.context';
+
 
 function Invitation() {
   const { tokenId } = useParams();
-  const [invitation, setInvitation] = useState(null);
+  const [event, setEvent] = useState(null);
+  const [participantResponse, setParticipantResponse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const toast = useToast();
   const [author, setAuthor] = useState(null);
+  const { user } = useUser();
 
-  useEffect(() => {
-    fetchInvitation();
-  }, [tokenId]);
 
-  const fetchInvitation = async () => {
-    try {
-        console.log(tokenId);
-      const invitation = await getEventByInvitationToken(tokenId);
-      setInvitation(invitation);
-      setAuthor(await getUserById(invitation.user));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // useEffect(() => {
+  //   fetchInvitation();
+  // }, [tokenId]);
+
+  // const fetchInvitation = async () => {
+  //   try {
+  //       console.log(tokenId);
+  //     const event = await getEventByInvitationToken(tokenId);
+  //     setEvent(event);
+  //     setAuthor(await getUserById(event.user));
+  //     const participantResponse = await getParticipantReponsesByEventId(event.id);
+  //     console.log(participantResponse);
+  //     setParticipantResponse(participantResponse);
+  //   } catch (err) {
+  //     setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleResponse = async (status) => {
-    try {
-      // Remplacez cette URL par l'URL réelle de votre API
-      const response = await fetch(`/api/invitations/${tokenId}/respond`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status }),
-      });
-      if (!response.ok) {
-        throw new Error('Erreur lors de la réponse à l\'invitation');
-      }
+    console.log(event.id, tokenId, status, user);
+    respondToInvitation(event.id, user.id, null, status).then((response) => {
       toast({
         title: 'Réponse enregistrée',
         description: 'Votre réponse a été enregistrée avec succès.',
@@ -59,7 +59,7 @@ function Invitation() {
         duration: 5000,
         isClosable: true,
       });
-    } catch (err) {
+    }).catch((err) => {
       toast({
         title: 'Erreur',
         description: err.message,
@@ -67,7 +67,7 @@ function Invitation() {
         duration: 5000,
         isClosable: true,
       });
-    }
+    });
   };
 
   if (loading) {
@@ -92,16 +92,16 @@ function Invitation() {
         <Heading as="h1" size="xl" textAlign="center">
           Invitation à l'événement
         </Heading>
-        {invitation && (
+        {event && (
           <>
             <Box borderWidth={1} borderRadius="lg" p={6}>
               <Heading as="h2" size="lg" mb={4}>
-                {invitation.title}
+                {event.title}
               </Heading>
               { author && <Text mb={4}>Organisé par: {author.username} </Text> }
-              <Text mb={4}>{invitation.description}</Text>
+              <Text mb={4}>{event.description}</Text>
               <Text fontWeight="bold">
-                Date: {new Date(invitation.startDate).toLocaleString()}
+                Date: {new Date(event.startDate).toLocaleString()}
               </Text>
             </Box>
             <Flex spacing={4} justify={'space-between'}>

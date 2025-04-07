@@ -4,20 +4,14 @@ import EventCalendar from "../components/EventCalendar";
 import EventList from "../components/EventList";
 import { useEffect, useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import { getEvents } from '../services/event.service';
+import { useEvents } from '../context/event.context';
 import { useUser } from '../context/user.context';
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [events, setEvents] = useState([]);
+  const { createdEvents, invitedEvents } = useEvents();
   const { user } = useUser();
   const navigate = useNavigate();
-    useEffect(() => {
-      user && getEvents().then((data) => {
-        console.log('getEvents', data);
-        setEvents(data);
-      });
-    }, []);
   
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -31,7 +25,7 @@ const Home = () => {
       <CreateModal />
       <Tabs isFitted variant='enclosed' py={5} w={'100%'}>
         <TabList mb='1em'>
-          <Tab>Calendrier</Tab>
+          <Tab>Calendrier aaa</Tab>
           <Tab>Liste</Tab>
         </TabList>
         <TabPanels>
@@ -41,12 +35,12 @@ const Home = () => {
                 <Heading size="md">Calendrier</Heading>
               </CardHeader>
               <CardBody>
-                <EventCalendar events={events} onEventClick={handleEventClick} />
+                <EventCalendar events={createdEvents} onEventClick={handleEventClick} />
               </CardBody>
             </Card>
           </TabPanel>
           <TabPanel>
-            <EventList events={events} onEventClick={handleEventClick} />
+            <EventList createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
           </TabPanel>
         </TabPanels>
       </Tabs>

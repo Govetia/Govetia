@@ -3,11 +3,9 @@ import { VStack, Box, Text, Heading, Flex } from "@chakra-ui/react";
 import { useUser } from '../context/user.context';
 
 
-const EventList = ({ events, onEventClick }) => {
+const EventList = ({ createdEvents, invitedEvents, onEventClick }) => {
   const { user } = useUser();
-
-  console.log('events', events);
-  console.log(user);
+  
 
   function formatDate(date) {
     return new Date(date).toLocaleDateString();
@@ -20,7 +18,7 @@ const EventList = ({ events, onEventClick }) => {
         </Flex> 
       }
       <Flex justify={'space-around'} flexWrap={'wrap'}>
-        {events.map((event) => (
+        {createdEvents.map((event) => (
           <Box
             key={event.id}
             p={4}
