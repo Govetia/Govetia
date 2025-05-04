@@ -1,18 +1,22 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Flex, Heading, Text, Button, Container, VStack, Link } from "@chakra-ui/react";
+import { Flex, Heading, Text, Button, Container, VStack, Link, Alert, AlertIcon, AlertTitle, AlertDescription, Box } from "@chakra-ui/react";
 import { getEventById } from '../services/event.service';
 import { useEffect, useState } from "react";
 import { FaUserAstronaut } from "react-icons/fa6";
 import { FcCalendar } from "react-icons/fc";
-import { FaMapMarkedAlt, FaWhatsapp, FaEnvelope, FaFacebookMessenger } from "react-icons/fa";
+import { FaMapMarkedAlt, FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaQuestionCircle } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
 import {getUserById} from '../services/user.service';
+import { getParticipantReponsesByEventId } from '../services/response.service';
 import { formatDate } from '../utils/date-management';
 import { useUser } from '../context/user.context';
+
 
 const DetailEvent = () => {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+  const [responses, setResponses] = useState([]);
   const [author, setAuthor] = useState(null);
   const user = useUser();
 
@@ -25,6 +29,12 @@ const DetailEvent = () => {
       });
     }).catch((error) => {
       console.error("Error fetching event details:", error);
+    });
+
+    getParticipantReponsesByEventId(eventId).then((res) => {
+      setResponses(res);
+    }).catch((error) => {
+      console.error("Error fetching responses:", error);
     });
   }, [eventId]);
 
@@ -43,7 +53,31 @@ const DetailEvent = () => {
     });
   }
 
+  const mapAlertStatus = (status) => {
+    switch (status) {
+      case 'accepted':
+        return 'success';
+      case 'maybe':
+        return 'warning';
+      case 'declined':
+        return 'error';
+      default:
+        return 'info';
+    }
+  }
 
+  const translateResponseStatus = (status) => {
+    switch (status) {
+      case 'accepted':
+        return 'Chaud';
+      case 'maybe':
+        return 'Chep';
+      case 'declined':
+        return 'Pas dispo';
+      default:
+        return 'En attente';
+    }
+  }
 
   return (
     <Container maxW="container.lg" py={10}>
@@ -78,6 +112,29 @@ const DetailEvent = () => {
               </Flex>
               
               <Text mb={4}>{event.description}</Text>
+
+              {responses.length > 0 && (
+                <Flex direction={'column'} justify={'center'} align={'center'} borderRadius="lg" p={6} w={'100%'}>
+                  <Flex >
+                    {responses.map((response) => (
+                      
+                      <Flex key={response.id} justify={'space-between'} align={'center'} m={2}  borderWidth={1} borderRadius="lg" mb={2}>
+                        <Alert status={mapAlertStatus(response.status)}>
+                          { response.status === 'accepted' && <AlertIcon /> }
+                          { response.status === 'maybe' && <FaQuestionCircle color='yellow' size={25}/> }
+                          { response.status === 'declined' && <IoMdCloseCircle color='red' size={25}/> }
+
+                          <Box px={1}>
+                            <AlertTitle>{response.anonymousName}</AlertTitle>
+                            <AlertDescription>{translateResponseStatus(response.status)}</AlertDescription>
+                          </Box>
+                        </Alert>
+      
+                      </Flex>
+                    ))}
+                  </Flex>
+                </Flex>
+              )}
             </Flex>
             {author && author.id === user.user.id && (
               <Flex justify={'center'} align={'center'} w={'100%'} gap={4}>

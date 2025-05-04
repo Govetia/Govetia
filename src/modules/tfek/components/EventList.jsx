@@ -1,9 +1,11 @@
 import React from 'react';
 import { VStack, Box, Text, Heading, Flex } from "@chakra-ui/react";
 import { useUser } from '../context/user.context';
+import { useEvents } from '../context/event.context';
 
 
-const EventList = ({ createdEvents, invitedEvents, onEventClick }) => {
+const EventList = ({ onEventClick }) => {
+  const { createdEvents } = useEvents();
   const { user } = useUser();
   
 

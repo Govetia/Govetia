@@ -19,7 +19,6 @@ function AuthModal() {
 
     const handleSubmit = async () => {
       connection().then((user) => {
-        console.log(user);
         toast({
           title: 'Authentification réussie',
           status: 'success',
@@ -29,7 +28,6 @@ function AuthModal() {
         loginContext(user);
         onClose();
       }).catch((error) => {
-        console.log(error);
         toast({
           title: 'Erreur lors de l\'authentification',
           description: error.response.data.message,

@@ -14,6 +14,7 @@ const Home = () => {
   const navigate = useNavigate();
   
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEventClick = (info) => {
     navigate(`/tfek/events/${info.id}`);
@@ -21,29 +22,34 @@ const Home = () => {
 
   return <Flex direction={"column"} justify={'flex-start'} align={'center'}  minH={"80vh"}>
     { user &&
-    <Flex direction={"column"} justify={"flex-start"} w={"100%"} align={'center'}>
-      <CreateModal />
-      <Tabs isFitted variant='enclosed' py={5} w={'100%'}>
+    <Flex direction={"column"} justify={"flex-start"} w={"100%"} align={'center'} mx={3}>
+      <Button onClick={() => setIsModalOpen(true)}>Créer un événement</Button>
+      <CreateModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            defaultStartDate={null}
+          />
+      {/* <Tabs isFitted variant='enclosed' py={5} w={'100%'}>
         <TabList mb='1em'>
           <Tab>Calendrier aaa</Tab>
           <Tab>Liste</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <Card>
+          <TabPanel> */}
+            <Card w={"100%"}>
               <CardHeader>
                 <Heading size="md">Calendrier</Heading>
               </CardHeader>
               <CardBody>
-                <EventCalendar events={createdEvents} onEventClick={handleEventClick} />
+                <EventCalendar createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
               </CardBody>
             </Card>
-          </TabPanel>
+          {/*</TabPanel>
           <TabPanel>
-            <EventList createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
+             <EventList createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
           </TabPanel>
         </TabPanels>
-      </Tabs>
+      </Tabs> */}
     </Flex>
 } 
   { !user && 

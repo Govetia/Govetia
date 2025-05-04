@@ -1,6 +1,5 @@
 export const formatDate = (date: string) => {
     let formattedDate = new Date(date);
-    console.log('formattedDate', formattedDate);
     let day = String(formattedDate.getDate()).padStart(2, '0');
     let month = String(formattedDate.getMonth() + 1).padStart(2, '0');
     let year = formattedDate.getFullYear();

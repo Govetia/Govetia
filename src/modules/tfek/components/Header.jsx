@@ -1,6 +1,6 @@
 
 import { 
-    Box,
+    Heading,
     Button,
     Flex,
     HStack,
@@ -91,13 +91,13 @@ const Header = () => {
           >
               <Flex flex={1} px={5}>
               {user ? (
-                <p>Salut {user.username}</p>
+                <Heading size={'md'}>Salut {user.username}</Heading>
               ) : (
                 <p>Non connecté</p>
               )}
               </Flex>
               <Flex flex={2} justify={"center"}>
-                  <Link href="/">
+                  <Link href="/tfek">
                   <HStack>
                       <h1>Tfek ?</h1>
                   </HStack>

@@ -2,7 +2,6 @@ import httpService from './http.service';
 
 // Enregistrer un nouvel utilisateur
 export const registerUser = async (userData) => {
-  console.log(userData);
   const response = await httpService.post('/register', userData);
   return response.data;
 };

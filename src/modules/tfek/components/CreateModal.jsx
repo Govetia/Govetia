@@ -11,21 +11,19 @@ import {
   FormLabel,
   Input,
   Textarea,
-  useDisclosure,
   IconButton,
   useToast,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { createEvent } from '../services/event.service';
 import { useUser } from '../context/user.context';
 import { IoMdAdd } from "react-icons/io";
 import { IoRemove } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 
-function CreateModal() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+function CreateModal({ isOpen, onClose, defaultStartDate } ) {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
   const user = useUser();
@@ -50,6 +48,13 @@ function CreateModal() {
     description: '',
   });
 
+  useEffect(() => {
+    setEventData((prevData) => ({
+      ...prevData,
+      startDate: defaultStartDate || '',
+    }));
+  }, [defaultStartDate]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEventData((prevData) => ({
@@ -61,7 +66,6 @@ function CreateModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
       createEvent(eventData).then((res) => {
-        console.log('Event created:', res);
         toast({
           title: 'Événement créé',
           description: 'Votre événement a été créé avec succès.',
@@ -93,15 +97,6 @@ function CreateModal() {
 
   return (
     <>
-      <Button
-        w={'fit-content'}
-        onClick={() => {
-          setOverlay(<BlurOverlay />);
-          onOpen();
-        }}
-      >
-        Créer un événement
-      </Button>
 
       <Modal
         size={'xl'}
