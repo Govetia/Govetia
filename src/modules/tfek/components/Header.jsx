@@ -99,7 +99,7 @@ const Header = () => {
               <Flex flex={2} justify={"center"}>
                   <Link href="/tfek">
                   <HStack>
-                      <h1>Tfek ?</h1>
+                    <Heading sx={{ fontFamily: 'Back To Black Demo' }}>Tfek?</Heading>
                   </HStack>
                   </Link>
               </Flex>

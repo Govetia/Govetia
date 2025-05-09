@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Back To Black Demo';
-    src: url('./modules/tfek/assets/fonts/back_to_black/BacktoBlackDemo.ttf') format('truetype');
+    src: url('./modules/tfek/assets/fonts/back_to_black/Back\ to\ Black\ Bold\ Demo.ttf') format('truetype');
   }
 
   @font-face {
@@ -13,6 +13,10 @@
     font-family: 'Boogie boys';
     font-size: 2.3rem;
   }
+
+  .logo {
+    font-family: 'Back To Black Demo';
+    font-size: 2.3rem;  }
 
   .pointer {
     cursor: pointer;

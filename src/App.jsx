@@ -4,6 +4,7 @@ import Tfek from './modules/tfek/Tfek.jsx';
 import OhMyFood from './modules/ohMyFood/OhMyFood.jsx';
 import Govetia from './modules/govetia/Govetia.jsx';
 import Tarawa from './modules/tarawa/Tarawa.tsx';
+import './global.scss';
 
 
 function App() {
