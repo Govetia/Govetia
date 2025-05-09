@@ -93,7 +93,7 @@ const Header = () => {
               {user ? (
                 <Heading size={'md'}>Salut {user.username}</Heading>
               ) : (
-                <p>Non connecté</p>
+                <Heading size={'md'}>Non connecté</Heading>
               )}
               </Flex>
               <Flex flex={2} justify={"center"}>

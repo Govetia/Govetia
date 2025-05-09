@@ -2,8 +2,15 @@ import httpService from './http.service';
 
 // Enregistrer un nouvel utilisateur
 export const registerUser = async (userData) => {
-  const response = await httpService.post('/register', userData);
-  return response.data;
+  try {
+    const response = await httpService.post('/register', userData);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+    }
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
 };
 
 // Connecter un utilisateur

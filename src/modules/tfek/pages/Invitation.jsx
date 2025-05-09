@@ -28,29 +28,7 @@ function Invitation() {
   const [author, setAuthor] = useState(null);
   const { user } = useUser();
 
-
-  // useEffect(() => {
-  //   fetchInvitation();
-  // }, [tokenId]);
-
-  // const fetchInvitation = async () => {
-  //   try {
-  //       console.log(tokenId);
-  //     const event = await getEventByInvitationToken(tokenId);
-  //     setEvent(event);
-  //     setAuthor(await getUserById(event.user));
-  //     const participantResponse = await getParticipantReponsesByEventId(event.id);
-  //     console.log(participantResponse);
-  //     setParticipantResponse(participantResponse);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleResponse = async (status) => {
-    console.log(event.id, tokenId, status, user);
     respondToInvitation(event.id, user.id, null, status).then((response) => {
       toast({
         title: 'Réponse enregistrée',

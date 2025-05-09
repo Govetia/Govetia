@@ -13,8 +13,8 @@ const EventCalendar = ({ createdEvents, invitedEvents, onEventClick }) => {
   const events = [...createdEvents, ...invitedEvents].map(event => ({
     id: event.id,
     title: event.title,
-    start: event.startDate,
-    end: event.endDate,
+    start: event.startDate.split('T')[0],
+    end: event.endDate?.split('T')[0],
     description: event.description,
     location: event.location,
     responses: event.responses,

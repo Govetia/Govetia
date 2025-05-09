@@ -7,7 +7,6 @@ import { UserProvider } from './context/user.context';
 import { EventProvider } from './context/event.context';
 import Invitation from './pages/Invitation';
 import DetailEvent from './pages/DetailEvent';
-import Home from './pages/Home';
 
 
 function Tfek() {
