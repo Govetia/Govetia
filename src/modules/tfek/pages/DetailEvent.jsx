@@ -22,6 +22,12 @@ import {
   ModalFooter,
   Input,
   useDisclosure,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  useColorModeValue,
+  FormLabel,
  } from "@chakra-ui/react";
 import { getEventById } from '../services/event.service';
 import { useEffect, useState } from "react";
@@ -35,6 +41,7 @@ import { getParticipantReponsesByEventId, deleteResponse } from '../services/res
 import { formatDate } from '../utils/date-management';
 import { useUser } from '../context/user.context';
 import { respondToInvitation } from '../services/invitation.service';
+import AuthModal from '../components/AuthModal';
 
 
 const DetailEvent = () => {
@@ -47,6 +54,16 @@ const DetailEvent = () => {
   const [anonymousName, setAnonymousName] = useState('');
   const [responseStatus, setResponseStatus] = useState('');
   const [ isAuthor, setIsAuthor ] = useState(false);
+
+
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg='blackAlpha.300'
+      backdropFilter='blur(10px) hue-rotate(90deg)'
+    />
+  )
+  const [overlay, setOverlay] = React.useState(<OverlayOne />)
+
 
   useEffect(() => {
     getEventById(eventId).then((res) => {
@@ -128,6 +145,10 @@ const DetailEvent = () => {
   }
 
   const handleSubmit = () => {
+    if (!anonymousName) {
+      alert('Veuillez entrer un nom');
+      return;
+    }
     submitResponse(responseStatus, null, anonymousName);
   }
 
@@ -141,6 +162,8 @@ const DetailEvent = () => {
     }
   }
 
+  const modalCardBg = useColorModeValue('gray.100', 'gray.800');
+
 
   return (
     <Container maxW="container.lg" py={10}>
@@ -150,7 +173,7 @@ const DetailEvent = () => {
         </Heading>
         {event && (
           <>
-            <Flex direction={'column'} justify={'center'} align={'center'} borderWidth={1} borderRadius="lg" p={6} >
+            <Card direction={'column'} justify={'center'} align={'center'} p={6} >
               <Flex align={'center'} flex={1}>
                   <FaUserAstronaut />
                   {author && <Text px={1} fontWeight="bold">{author.username}</Text>}
@@ -210,7 +233,7 @@ const DetailEvent = () => {
                   <Text fontSize={'xl'}>Pas encore de réponses</Text>
                 </Flex>
               )}
-            </Flex>
+            </Card>
             {isAuthor && (
               <Flex justify={'center'} align={'center'} w={'100%'} gap={4}>
                 <Button colorScheme="blue" onClick={copyInvitationLink}>Copier le lien d'invitation</Button>
@@ -244,22 +267,45 @@ const DetailEvent = () => {
       </VStack>
 
       <Modal isOpen={isOpen} onClose={onClose}>
+      {overlay}
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Qui es tu ?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input
-              placeholder="Ton nom pour l'organisateur"
-              value={anonymousName}
-              onChange={(e) => setAnonymousName(e.target.value)}
-            />
-          </ModalBody>
-          <ModalFooter>
+          <Card variant={'elevated'} bg={modalCardBg}>
+            <CardHeader>
+              <Heading size='md'>Connecte toi pour retrouver tes infos</Heading>
+            </CardHeader>
+            <CardFooter>
+              <AuthModal />
+            </CardFooter>
+          </Card>
+          <Card bg={modalCardBg} mt={2}>
+            <CardHeader>
+              <Heading size='md'>Sinon répond juste à l'événement sans te connecter</Heading>
+            </CardHeader>
+            <CardBody>
+              <FormLabel>Nom</FormLabel>
+              <Input
+                type="text"
+                placeholder="Ton nom pour l'organisateur"
+                value={anonymousName}
+                onChange={(e) => setAnonymousName(e.target.value)}
+              />
+              </CardBody>
+            <CardFooter>
             <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
               Soumettre
             </Button>
             <Button variant="ghost" onClick={onClose}>Annuler</Button>
+            </CardFooter>
+          </Card>
+
+            
+          </ModalBody>
+          <ModalFooter>
+            
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -1,9 +1,7 @@
-import { Flex, Card, CardBody, Box, CardHeader, Button, Heading, Text, Modal } from "@chakra-ui/react";
+import { Flex, Card, CardBody, Box, CardHeader, Button, Heading, Text } from "@chakra-ui/react";
 import CreateModal from "../components/CreateModal";
 import EventCalendar from "../components/EventCalendar";
-import EventList from "../components/EventList";
-import { useEffect, useState } from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { useState } from "react";
 import { useEvents } from '../context/event.context';
 import { useUser } from '../context/user.context';
 import { useNavigate } from "react-router-dom";
@@ -13,7 +11,6 @@ const Home = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   
-  const [selectedEvent, setSelectedEvent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEventClick = (info) => {
@@ -25,31 +22,18 @@ const Home = () => {
     <Flex direction={"column"} justify={"flex-start"} w={"100%"} align={'center'} mx={3}>
       <Button onClick={() => setIsModalOpen(true)}>Créer un événement</Button>
       <CreateModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            defaultStartDate={null}
-          />
-      {/* <Tabs isFitted variant='enclosed' py={5} w={'100%'}>
-        <TabList mb='1em'>
-          <Tab>Calendrier aaa</Tab>
-          <Tab>Liste</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel> */}
-            <Card w={"100%"}>
-              <CardHeader>
-                <Heading size="md">Calendrier</Heading>
-              </CardHeader>
-              <CardBody>
-                <EventCalendar createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
-              </CardBody>
-            </Card>
-          {/*</TabPanel>
-          <TabPanel>
-             <EventList createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs> */}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        defaultStartDate={null}
+      />
+        <Card w={"100%"}>
+          <CardHeader>
+            <Heading size="md">Calendrier</Heading>
+          </CardHeader>
+          <CardBody>
+            <EventCalendar createdEvents={createdEvents} invitedEvents={invitedEvents} onEventClick={handleEventClick} />
+          </CardBody>
+        </Card>
     </Flex>
 } 
   { !user && 

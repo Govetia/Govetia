@@ -27,6 +27,7 @@ function AuthModal() {
         });
         loginContext(user);
         onClose();
+        window.location.reload();
       }).catch((error) => {
         toast({
           title: 'Erreur lors de l\'authentification',

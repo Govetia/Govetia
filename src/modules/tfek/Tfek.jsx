@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react";
 import { UserProvider } from './context/user.context';
 import { EventProvider } from './context/event.context';
-import Invitation from './pages/Invitation';
 import DetailEvent from './pages/DetailEvent';
 
 
@@ -20,7 +19,6 @@ function Tfek() {
           <Header></Header>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="invitation/:tokenId" element={<Invitation />} />
             <Route path="events/:eventId" element={<DetailEvent />} />
           </Routes>
         </EventProvider>
