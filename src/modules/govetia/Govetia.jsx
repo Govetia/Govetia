@@ -14,8 +14,8 @@ function Govetia() {
     }
     return (
         <ChakraProvider theme={theme}>
-            {/* <Banner></Banner> */}
-            <Projects></Projects>
+            <Banner></Banner>
+            {/* <Projects></Projects> */}
         </ChakraProvider>
     )
 }

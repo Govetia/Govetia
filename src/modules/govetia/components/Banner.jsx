@@ -1,14 +1,19 @@
-//import logo from '../assets/logo.png'
-import { Box, ChakraProvider, Collapse, Flex, Img, useDisclosure } from '@chakra-ui/react'
+import { Box, ChakraProvider, Flex } from '@chakra-ui/react'
 import '../styles/Banner.css'
-import Header from './Header'
+import { useNavigate } from "react-router";
+
 
 function Banner() {
-    const title = 'Govetia'
-    const { isOpen, onToggle } = useDisclosure()
+    const navigate = useNavigate()
+
+    const redirectToTfek = () => {
+        navigate('/tfek')
+    }
+    
     return (
         <ChakraProvider>
-            <Box w="100%" h="100vh" position="relative" overflow="hidden" boxShadow={"0 3px 7px  0 rgba(0, 0, 6, 0.3),0 1px 2px 0 rgba(0, 0, 0, 0.06)"}>
+            <Box onClick={redirectToTfek}
+            w="100%" h="100vh" position="relative" overflow="hidden" boxShadow={"0 3px 7px  0 rgba(0, 0, 6, 0.3),0 1px 2px 0 rgba(0, 0, 0, 0.06)"}>
                 <video autoPlay muted loop playsInline style={{ 
                     position: 'absolute',
                     width: '100%',
@@ -18,7 +23,7 @@ function Banner() {
                     objectFit: 'cover',
                     transform: 'translate(-50%, -50%)'
                 }}>
-                <source src="/assets/orange_leaf.mp4" type="video/mp4" />
+                <source src="/assets/videos/forest.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
                 </video>
                 <Flex w="100%" h="100%" justifyContent="center" align="center" position="relative">
@@ -32,11 +37,6 @@ function Banner() {
                         <span>A</span>
                         </div>
                 </Flex>
-                {/* <div className='gvt-banner'>
-                    
-                    <h1 className='gvt-title'>{title}</h1>
-                    <Header></Header>
-                </div> */}
             </Box>
         </ChakraProvider>
     )
