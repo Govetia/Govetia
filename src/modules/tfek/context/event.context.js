@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { getEventsCreatedByUser, getEventsInvitedToUser } from '../services/event.service';
 import { useUser } from './user.context';
 
@@ -9,13 +9,8 @@ export const EventProvider = ({ children }) => {
   const [invitedEvents, setInvitedEvents] = useState([]);
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user) {
-      fetchEvents();
-    }
-  }, [user]);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
+    if (!user) return;
     try {
       const created = await getEventsCreatedByUser(user.id);
       const invited = await getEventsInvitedToUser(user.id);
@@ -24,7 +19,14 @@ export const EventProvider = ({ children }) => {
     } catch (error) {
       console.error('Erreur lors de la récupération des événements:', error);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      fetchEvents();
+    }
+  }, [user, fetchEvents]);
+
 
   return (
     <EventContext.Provider value={{ createdEvents, invitedEvents, fetchEvents }}>
