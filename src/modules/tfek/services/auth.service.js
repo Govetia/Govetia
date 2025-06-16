@@ -13,15 +13,23 @@ export const registerUser = async (userData) => {
 };
 
 export const loginUser = async (userData) => {
-    const response = await httpService.post('/login', userData);
-    if (response.data) {
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+  return new Promise((resolve, reject) => {
+    console.log('ici');
+    httpService.post('/login', userData).then((response) => {
+      console.log('Login response:', response);
+      if (response.data) {
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token);
+        }
+        resolve(response.data.user);
+      } else {
+        reject(new Error('Invalid response'));
       }
-      return response.data.user;
-    } else {
-      throw new Error('Invalid response');
-    }
+    }).catch((error) => {
+      console.error('Login error:', error);
+      reject(error);
+    });
+  })
 
 };
 
